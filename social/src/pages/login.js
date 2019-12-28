@@ -61,11 +61,18 @@ export class login extends Component {
    this.props.loginUser(userData, this.props.history)
  
    }
+  componentWillReceiveProps(nextProps){
+    if(nextProps.UI.errors){
+      this.setState({
+        errors:nextProps.UI.errors
+      })
+    }
+  }
   render() {
-    console.log("props",this.props)
-    debugger;
+    let {errors} = this.state;
+    
     const { classes } = this.props;
-    const { UI : {loading, errors}} = this.props;
+    const { UI : {loading}} = this.props;
     return (
       <Grid container className={classes.form}>
         <Grid item sm />
